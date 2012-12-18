@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">NTemplateMap</string>
+    <string name="googleMapsAPIKey" translatable="false">0XEpnhz3e6RLJVcwG_3i_XrrU66igb1WZhoNWOg</string>
+<!--     0XEpnhz3e6RJ8g9KQ1k6_gPOWaLAzDz62_TU0nw LIVE-->
+<!--     0XEpnhz3e6RLJVcwG_3i_XrrU66igb1WZhoNWOg DEBUG-->
+</resources>
