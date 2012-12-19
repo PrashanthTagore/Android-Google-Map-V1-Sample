@@ -40,7 +40,7 @@ public class MapActivity extends BaseMapActivity{
 	private void setPins() {
 		clusterOverlay.clear();
 
-		for(GeoPoint gp : NTemplateMapApplication.tempList){
+		for(GeoPoint gp : App.tempList){
 			NOverlayItemV1 mOverlayItem = new NOverlayItemV1(gp,"", "Point", "LOOOOOOOOOOOOOOOOOOOOOOO \n OOOOOOOOOOOOOOOOONG");
 			clusterOverlay.addOverlay(mOverlayItem);
 		}

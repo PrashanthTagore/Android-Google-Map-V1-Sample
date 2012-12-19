@@ -8,15 +8,15 @@ import android.location.Location;
 import com.google.android.maps.GeoPoint;
 
 import dk.nodes.controllers.NScreenParameterController;
+import dk.nodes.controllers.nheap.NHeapController;
 import dk.nodes.map.NGetMyPositionNow;
 import dk.nodes.map.NGetMyPositionNow.NGetMyPositionNowListener;
 import dk.nodes.map.NMyLocation;
 import dk.nodes.map.v1.NLocationCalculatorV1;
 
 
-public class NTemplateMapApplication extends Application {
+public class App extends Application {
 
-	public static final boolean DEBUG = true;
 	public static final int DEFINITION_OF_SMALL_HEAP = 31;
 	public static NMyLocation myLocation = new NMyLocation();
 	public static ArrayList<GeoPoint> tempList = new ArrayList<GeoPoint>();
@@ -24,6 +24,7 @@ public class NTemplateMapApplication extends Application {
 	@Override
 	public void onCreate() {
 		NScreenParameterController.getScreenParameters(getBaseContext(),false);
+		NHeapController.logHeap();
 		setGeoPointList();
 		new NGetMyPositionNow(getBaseContext(),new NGetMyPositionNowListener() {
 			
