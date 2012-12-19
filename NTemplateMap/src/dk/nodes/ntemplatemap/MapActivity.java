@@ -1,14 +1,15 @@
 package dk.nodes.ntemplatemap;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+
 import com.google.android.maps.GeoPoint;
+
 import dk.nodes.map.v1.NMapViewV1;
+import dk.nodes.map.v1.NMapViewV1.NOnMapListener;
 import dk.nodes.map.v1.overlays.nballon.OnBalloonViewListener;
 import dk.nodes.map.v1.overlays.ncluster.model.NOverlayItemV1;
 import dk.nodes.map.v1.overlays.nclusterwithballoon.NClusterOverlayWithBalloonV1;
 import dk.nodes.ntemplatemap.baseactivities.BaseMapActivity;
-
 
 
 public class MapActivity extends BaseMapActivity{
@@ -20,10 +21,26 @@ public class MapActivity extends BaseMapActivity{
 		setContentView(R.layout.page_map);
 
 		mapView = (NMapViewV1) findViewById(R.id.googlemap_mv);	
+		mapView.setNOnMapListener(new NOnMapListener() {
+			
+			@Override
+			public void NOnMapListenerOnZoom() {
+		
+			}
+			
+			@Override
+			public void NOnMapListenerOnPan() {
+	
+			}
+			
+			@Override
+			public void NOnMapListenerOnMapIsStill() {
+				clusterOverlay.recalculatePOI(250);
+			}
+		});
+		
 		mapOverlays = mapView.getOverlays();
 
-		if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH))		
-			mapView.setBuiltInZoomControls(false);
 
 		clusterOverlay = new NClusterOverlayWithBalloonV1(getBaseContext(),mapView,this, new OnBalloonViewListener(){
 
@@ -45,11 +62,5 @@ public class MapActivity extends BaseMapActivity{
 			clusterOverlay.addOverlay(mOverlayItem);
 		}
 		clusterOverlay.recalculatePOI();
-	}
-
-	@Override
-	public void onMapIsStill() {
-		clusterOverlay.recalculatePOI(250);
-		super.onMapIsStill();
-	}		
+	}	
 }
